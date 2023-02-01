@@ -1,0 +1,253 @@
+Last login: Fri Jul  8 23:20:35 on ttys000
+sagarkaw@Sagars-MacBook-Air ~ % cd documents
+sagarkaw@Sagars-MacBook-Air documents % cd baseline
+cd: no such file or directory: baseline
+sagarkaw@Sagars-MacBook-Air documents % clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sagarkaw@Sagars-MacBook-Air documents % cd baseline 1
+cd: string not in pwd: baseline
+sagarkaw@Sagars-MacBook-Air documents % cd Baseline%201
+cd: no such file or directory: Baseline%201
+sagarkaw@Sagars-MacBook-Air documents % cd Baseline 1  
+cd: string not in pwd: Baseline
+sagarkaw@Sagars-MacBook-Air documents % clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sagarkaw@Sagars-MacBook-Air documents % cd baseline
+cd: no such file or directory: baseline
+sagarkaw@Sagars-MacBook-Air documents % clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sagarkaw@Sagars-MacBook-Air documents % cd baseline1
+sagarkaw@Sagars-MacBook-Air baseline1 % clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sagarkaw@Sagars-MacBook-Air baseline1 % python3 example.py
+---------------------------------------------------------
+This library is a Team Formation tool that uses user database to predict the best teams to match a specific skill requirement.
+NOTE: the database you provide to this library must be in a one-hot vector data frame format consisting of the following 3 parts:
+1. ID
+2. Skills
+3. Experts
+---------------------------------------------------------
+ 
+An instance of the DAL has been created.
+
+Beginning Step#1: Embeddings Generation
+Embeddings generation is complete.
+
+Beginning Step#2: T2V Dataset Generation
+T2V dataset generation is complete.
+
+Beginning Step#3: Train/Test Data Split
+Train/test data split is complete.
+
+Beginning Step#4: VAE Training/Testing
+Input/output Dimensions:   100 2470
+Model: "encoder"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ encoder_input (InputLayer)     [(None, 100)]        0           []                               
+                                                                                                  
+ dense (Dense)                  (None, 100)          10100       ['encoder_input[0][0]']          
+                                                                                                  
+ z_mean (Dense)                 (None, 2)            202         ['dense[0][0]']                  
+                                                                                                  
+ z_log_var (Dense)              (None, 2)            202         ['dense[0][0]']                  
+                                                                                                  
+ z (Lambda)                     (None, 2)            0           ['z_mean[0][0]',                 
+                                                                  'z_log_var[0][0]']              
+                                                                                                  
+==================================================================================================
+Total params: 10,504
+Trainable params: 10,504
+Non-trainable params: 0
+__________________________________________________________________________________________________
+Model: "decoder"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ z_sampling (InputLayer)     [(None, 2)]               0         
+                                                                 
+ dense_1 (Dense)             (None, 2470)              7410      
+                                                                 
+ dense_2 (Dense)             (None, 2470)              6103370   
+                                                                 
+=================================================================
+Total params: 6,110,780
+Trainable params: 6,110,780
+Non-trainable params: 0
+_________________________________________________________________
+Model: "vae_mlp"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ encoder_input (InputLayer)  [(None, 100)]             0         
+                                                                 
+ encoder (Functional)        [(None, 2),               10504     
+                              (None, 2),                         
+                              (None, 2)]                         
+                                                                 
+ decoder (Functional)        (None, 2470)              6110780   
+                                                                 
+=================================================================
+Total params: 6,121,284
+Trainable params: 6,121,284
+Non-trainable params: 0
+_________________________________________________________________
+Train on 28051 samples, validate on 4951 samples
+Epoch 1/100
+2022-07-08 23:45:50.860937: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-07-08 23:45:50.890821: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:354] MLIR V1 optimization pass is not enabled
+/Users/sagarkaw/Library/Python/3.8/lib/python/site-packages/keras/engine/training_v1.py:2045: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  updates = self.state_updates
+28051/28051 - 23s - loss: 17.9358 - val_loss: 1.8849 - 23s/epoch - 826us/sample
+Epoch 2/100
+28051/28051 - 23s - loss: 1.7150 - val_loss: 1.6661 - 23s/epoch - 809us/sample
+Epoch 3/100
+28051/28051 - 23s - loss: 1.6369 - val_loss: 1.6432 - 23s/epoch - 819us/sample
+Epoch 4/100
+28051/28051 - 23s - loss: 1.6236 - val_loss: 1.6355 - 23s/epoch - 831us/sample
+Epoch 5/100
+28051/28051 - 24s - loss: 1.6180 - val_loss: 1.6312 - 24s/epoch - 841us/sample
+Epoch 6/100
+28051/28051 - 24s - loss: 1.6147 - val_loss: 1.6287 - 24s/epoch - 846us/sample
+Epoch 7/100
+28051/28051 - 25s - loss: 1.6125 - val_loss: 1.6268 - 25s/epoch - 878us/sample
+Epoch 8/100
+28051/28051 - 41s - loss: 1.6109 - val_loss: 1.6254 - 41s/epoch - 1ms/sample
+Epoch 9/100
+28051/28051 - 42s - loss: 1.6098 - val_loss: 1.6244 - 42s/epoch - 1ms/sample
+Epoch 10/100
+28051/28051 - 43s - loss: 1.6089 - val_loss: 1.6236 - 43s/epoch - 2ms/sample
+Epoch 11/100
+28051/28051 - 58s - loss: 1.6082 - val_loss: 1.6229 - 58s/epoch - 2ms/sample
+Epoch 12/100
+28051/28051 - 31s - loss: 1.6076 - val_loss: 1.6224 - 31s/epoch - 1ms/sample
+Epoch 13/100
+28051/28051 - 24s - loss: 1.6070 - val_loss: 1.6219 - 24s/epoch - 860us/sample
+Epoch 14/100
+28051/28051 - 28s - loss: 1.6066 - val_loss: 1.6214 - 28s/epoch - 998us/sample
+Epoch 15/100
+28051/28051 - 35s - loss: 1.6062 - val_loss: 1.6211 - 35s/epoch - 1ms/sample
+Epoch 16/100
+28051/28051 - 31s - loss: 1.6059 - val_loss: 1.6208 - 31s/epoch - 1ms/sample
+Epoch 17/100
+28051/28051 - 29s - loss: 1.6056 - val_loss: 1.6206 - 29s/epoch - 1ms/sample
+Epoch 18/100
+28051/28051 - 25s - loss: 1.6054 - val_loss: 1.6204 - 25s/epoch - 907us/sample
+Epoch 19/100
+28051/28051 - 27s - loss: 1.6053 - val_loss: 1.6203 - 27s/epoch - 958us/sample
+Epoch 20/100
+28051/28051 - 29s - loss: 1.6052 - val_loss: 1.6202 - 29s/epoch - 1ms/sample
+Epoch 21/100
+28051/28051 - 26s - loss: 1.6051 - val_loss: 1.6201 - 26s/epoch - 940us/sample
+Epoch 22/100
+28051/28051 - 26s - loss: 1.6050 - val_loss: 1.6201 - 26s/epoch - 928us/sample
+Epoch 23/100
+28051/28051 - 27s - loss: 1.6050 - val_loss: 1.6200 - 27s/epoch - 962us/sample
+Epoch 24/100
+28051/28051 - 26s - loss: 1.6050 - val_loss: 1.6200 - 26s/epoch - 917us/sample
+Epoch 25/100
+28051/28051 - 27s - loss: 1.6049 - val_loss: 1.6200 - 27s/epoch - 964us/sample
+Epoch 26/100
+28051/28051 - 23s - loss: 1.6049 - val_loss: 1.6199 - 23s/epoch - 815us/sample
+Epoch 27/100
+28051/28051 - 24s - loss: 1.6049 - val_loss: 1.6199 - 24s/epoch - 839us/sample
+Epoch 28/100
+28051/28051 - 23s - loss: 1.6049 - val_loss: 1.6199 - 23s/epoch - 821us/sample
+Epoch 29/100
+28051/28051 - 23s - loss: 1.6048 - val_loss: 1.6200 - 23s/epoch - 822us/sample
+Epoch 30/100
+28051/28051 - 25s - loss: 1.6048 - val_loss: 1.6199 - 25s/epoch - 894us/sample
+Epoch 31/100
+28051/28051 - 25s - loss: 1.6048 - val_loss: 1.6199 - 25s/epoch - 875us/sample
+Epoch 31: early stopping
+/Users/sagarkaw/Library/Python/3.8/lib/python/site-packages/keras/engine/training_v1.py:2067: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  updates=self.state_updates,
+VAE training/testing complete.
+
+Beginning Step#5: Evaluation
+Dataset evaluation:
+Recall = 2.14%
+MRR = 1.73%
+MAP = 0.86%
+NDCG = 1.39%
+
+Evaluation complete.
+
+sagarkaw@Sagars-MacBook-Air baseline1 % 

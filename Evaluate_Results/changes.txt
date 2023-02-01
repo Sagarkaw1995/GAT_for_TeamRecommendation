@@ -1,0 +1,9 @@
+Change 1
+1) Go to "dal" folder
+2) Go to "embedding.py"
+3) On line 182, change dimension (As per your need)
+
+Change 2
+1) Go to "TFL.py"
+2) In line 85, change "output/Models/dblp/model_d{}_w2_m0_tSkill" ({} enter dimension)
+3) In line 99, change "dataset/dblp_ae_t2v_dim{}_tSkill_dataset.pkl" ({} enter dimension)
